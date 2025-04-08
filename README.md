@@ -34,9 +34,6 @@ Below is a summary of the database models covered in this text. Click the links 
 *   **[Graph Databases](./docs/04_graph_databases.md)**
     *   *Teaser*: Focus on the connections! Explore how graph databases model and query complex relationships efficiently using nodes and edges. The go-to choice for social networks, recommendation engines, and fraud detection.
 
-*   **[Column-Family Databases (Wide-Column)](./docs/05_column_family_databases.md)**
-    *   *Teaser*: Built for big data and high write throughput. Understand how storing data by columns enables massive scalability and efficient analytics over vast datasets, common in logging, time-series, and IoT applications.
-
 ## Branding Guidelines
 
 Consistency in presentation enhances clarity. Refer to the `branding` directory for guidelines on:
