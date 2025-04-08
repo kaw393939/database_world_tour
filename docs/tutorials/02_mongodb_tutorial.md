@@ -1,4 +1,3 @@
-
 # MongoDB Quick Start Tutorial (Docker Compose)
 
 This tutorial guides you through connecting to the MongoDB instance running via Docker Compose and performing basic operations.
@@ -97,3 +96,91 @@ Once connected:
     ```
 
 This covers fundamental CRUD operations in MongoDB.
+
+## Further Learning & Tutorial Prompts
+
+Use the following prompts to generate more detailed tutorials building on this foundation.
+
+### Create Tutorial: MongoDB Query Operators
+
+**Prompt:**
+
+```text
+Create a new tutorial file named `docs/tutorials/02a_mongodb_query_operators.md`.
+
+**Title:** MongoDB Tutorial: Advanced Query Operators
+
+**Content:**
+
+Following the structure of `02_mongodb_tutorial.md`, create a tutorial focusing on **Advanced Query Operators in MongoDB**, using the existing Docker Compose setup and the `landmarks` collection example.
+
+*   **Introduction:** Explain how query operators allow for more specific document retrieval.
+*   **Prerequisites:** Refer back to the Docker setup and the collection created in `02_mongodb_tutorial.md`. Add more diverse data to the `landmarks` collection (e.g., add `visitor_count`, `year_built` fields) to support varied queries.
+*   **Examples:** Provide `mongosh` examples demonstrating:
+    *   Comparison Operators (`$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, `$in`, `$nin`).
+    *   Logical Operators (`$and`, `$or`, `$not`, `$nor`).
+    *   Element Operators (`$exists`, `$type`).
+    *   Array Operators (`$all`, `$elemMatch`, `$size`).
+*   **Explanation:** Explain the syntax and purpose of each operator group.
+*   **Use Cases:** Provide practical scenarios for using these operators.
+*   **Link Back:** Include links to this tutorial (`02_mongodb_tutorial.md`) and the main Document Databases doc (`../02_document_databases.md`).
+```
+
+### Create Tutorial: MongoDB Indexing
+
+**Prompt:**
+
+```text
+Create a new tutorial file named `docs/tutorials/02b_mongodb_indexing.md`.
+
+**Title:** MongoDB Tutorial: Indexing Fundamentals
+
+**Content:**
+
+Following the structure of `02_mongodb_tutorial.md`, create a tutorial focusing on **Basic Indexing in MongoDB**, using the existing Docker Compose setup and the `landmarks` collection example.
+
+*   **Introduction:** Explain the importance of indexing for query performance in MongoDB.
+*   **Prerequisites:** Refer back to the Docker setup and the collection created in `02_mongodb_tutorial.md`.
+*   **Examples:** Provide `mongosh` examples demonstrating:
+    *   Creating a single-field index (`createIndex`).
+    *   Analyzing query performance using `.explain("executionStats")` before and after indexing.
+    *   Creating a compound index.
+    *   Creating indexes in the background.
+    *   Listing existing indexes (`getIndexes`).
+    *   Dropping an index (`dropIndex`).
+*   **Explanation:** Explain the syntax and purpose of each command.
+*   **Use Cases:** Briefly discuss when to use single-field vs. compound indexes.
+*   **Link Back:** Include links to this tutorial (`02_mongodb_tutorial.md`) and the main Document Databases doc (`../02_document_databases.md`).
+```
+
+### Create Tutorial: MongoDB Aggregation Basics
+
+**Prompt:**
+
+```text
+Create a new tutorial file named `docs/tutorials/02c_mongodb_aggregation.md`.
+
+**Title:** MongoDB Tutorial: Aggregation Framework Basics
+
+**Content:**
+
+Following the structure of `02_mongodb_tutorial.md`, create a tutorial introducing the **MongoDB Aggregation Framework**, using the existing Docker Compose setup and the `landmarks` collection example (ensure it has numeric fields like `visitor_count`).
+
+*   **Introduction:** Explain the purpose of the aggregation framework for data processing and analysis.
+*   **Prerequisites:** Refer back to the Docker setup and the collection created in `02_mongodb_tutorial.md`. Ensure the collection has suitable data for aggregation.
+*   **Examples:** Provide `mongosh` examples using `db.collection.aggregate([...])` demonstrating basic stages:
+    *   `$match`: Filtering documents before aggregation.
+    *   `$group`: Grouping documents (e.g., group landmarks by city, calculate average `visitor_count` per city using `$avg`).
+    *   `$sort`: Sorting the results.
+    *   `$project`: Reshaping documents (selecting, renaming, adding fields).
+    *   `$limit`: Limiting the number of output documents.
+    *   `$count`: Counting the documents in a stage.
+*   **Explanation:** Explain the concept of the aggregation pipeline and the purpose of each demonstrated stage.
+*   **Use Cases:** Discuss scenarios where aggregation is useful.
+*   **Link Back:** Include links to this tutorial (`02_mongodb_tutorial.md`) and the main Document Databases doc (`../02_document_databases.md`).
+```
+
+*(Add similar prompts for Data Modeling, Schema Validation, etc. as needed)*
+
+---
+*Back to [Document Databases](../02_document_databases.md)*
