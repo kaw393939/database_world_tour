@@ -3,219 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database World Tour: Navigate Modern Data Storage</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Database World Tour - Explore Database Models</title>
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Basic Reset & Root Variables */
         :root {
-            --base-font-size: 16px;
-            --base-line-height: 1.6;
-            --spacing-unit: 0.5rem; /* 8px */
-            --color-text: #333;
-            --color-text-light: #666;
-            --color-primary: #007bff; /* Consider defining a specific brand blue */
-            --color-primary-dark: #0056b3;
-            --color-background: #f8f9fa; /* Lighter gray */
-            --color-surface: #ffffff;
+            --color-primary: #0d6efd; /* Updated Bootstrap Blue */
+            --color-secondary: #6c757d;
+            --color-background: #ffffff;
+            --color-background-offset: #f8f9fa; /* Light gray */
+            --color-text: #212529;
+            --color-text-muted: #6c757d;
+            --color-text-on-dark: #f8f9fa;
             --color-border: #dee2e6;
-            --color-footer-bg: #343a40; /* Darker gray */
+            --color-border-subtle: #e9ecef;
+            --color-footer-bg: #212529; /* Dark background for footer */
             --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --max-content-width: 1140px;
+            --spacing-unit: 4px;
+            --header-height: 65px;
         }
 
         html {
-            font-size: var(--base-font-size);
+            font-size: 16px;
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height); /* Offset for sticky header */
         }
 
         body {
             font-family: var(--font-family-base);
-            line-height: var(--base-line-height);
             color: var(--color-text);
             background-color: var(--color-background);
+            margin: 0;
+            padding-top: var(--header-height); /* Prevent content from hiding under sticky header */
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            overflow: hidden;
-            padding: 0 calc(var(--spacing-unit) * 4); /* 32px */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Header/Hero Section */
-        .hero {
-            /* Using a subtle gradient instead of placeholder image */
-            background: linear-gradient(135deg, rgba(0, 123, 255, 0.8), rgba(52, 58, 64, 0.8));
-            color: var(--color-surface);
-            min-height: 55vh; /* Adjusted height */
+        /* Container for centered content */
+        .container {
+            max-width: var(--max-content-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: calc(var(--spacing-unit) * 4); /* 16px */
+            padding-right: calc(var(--spacing-unit) * 4); /* 16px */
+            width: 100%; /* Ensure it takes up space */
+        }
+
+        /* --- Header --- */
+        .site-header {
+            background-color: var(--color-background-offset);
+            border-bottom: 1px solid var(--color-border);
+            position: fixed; /* Sticky Header */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            z-index: 1000;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+        }
+
+        .site-header .container { /* Ensure container inside header is flex */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            margin-right: calc(var(--spacing-unit) * 2); /* 8px */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: calc(var(--spacing-unit) * 5); /* 20px */
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            padding: calc(var(--spacing-unit) * 2) 0; /* 8px top/bottom */
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
             text-align: center;
-            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
+            padding: calc(var(--spacing-unit) * 15) 0; /* 60px top/bottom padding */
+            /* background-color: var(--color-background-offset); Optional: Can have its own bg */
+            /* border-bottom: 1px solid var(--color-border-subtle); */
         }
 
         .hero h1 {
-            font-size: 2.5rem; /* 40px */
-            font-weight: 700; /* Bold */
-            line-height: 1.2;
-            margin-bottom: calc(var(--spacing-unit) * 2); /* 16px */
+            font-size: 2.8rem; /* ~45px */
+            margin-bottom: calc(var(--spacing-unit) * 4); /* 16px */
+            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.25rem; /* 20px */
-            font-weight: 400; /* Regular */
-            line-height: 1.5;
-            max-width: 700px; /* Constrain intro text width */
-            margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+            font-size: 1.15rem; /* ~18px */
+            color: var(--color-text-muted);
+            max-width: 750px;
+            margin: 0 auto calc(var(--spacing-unit) * 6); /* 24px bottom */
         }
 
-        .hero .cta-button {
+        .cta-button {
             display: inline-block;
-            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3); /* 12px 24px */
             background-color: var(--color-primary);
-            color: var(--color-surface);
-            border: none;
-            border-radius: 4px;
+            color: white;
+            padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 6); /* 12px 24px */
+            border-radius: 6px;
             text-decoration: none;
-            font-size: 1.1rem; /* 17.6px */
-            font-weight: 600; /* SemiBold */
-            transition: background-color 0.3s ease;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
-        .hero .cta-button:hover {
-            background-color: var(--color-primary-dark);
-            cursor: pointer;
+        .cta-button:hover {
+            background-color: #0b5ed7; /* Darker blue */
+            transform: translateY(-2px);
         }
 
-        /* Panels Section */
+        /* --- Panels Section --- */
         .panels {
-            padding: calc(var(--spacing-unit) * 8) 0; /* 64px */
-            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 12) 0; /* 48px top/bottom */
+            background-color: var(--color-background-offset); /* Give panels section a subtle background */
         }
 
         .panels h2 {
             text-align: center;
-            font-size: 2rem; /* 32px */
-            font-weight: 700; /* Bold */
-            line-height: 1.3;
-            margin-bottom: calc(var(--spacing-unit) * 6); /* 48px */
-            color: #495057; /* Darker gray for heading */
+            font-size: 2.2rem; /* ~35px */
+            margin-bottom: calc(var(--spacing-unit) * 10); /* 40px */
+            font-weight: 700;
         }
 
         .panel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: calc(var(--spacing-unit) * 4); /* 32px */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: calc(var(--spacing-unit) * 5); /* 20px */
         }
 
         .panel {
-            background: var(--color-surface);
-            padding: calc(var(--spacing-unit) * 4); /* 32px */
-            border-radius: 6px;
+            background: var(--color-background); /* Panels white on gray background */
+            padding: calc(var(--spacing-unit) * 5); /* 20px */
+            border-radius: 8px;
             border: 1px solid var(--color-border);
-            /* Subtle shadow */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 0 1 30%;
+            min-width: 280px;
         }
 
         .panel:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Placeholder for icons - style if added */
-        /* .panel i { ... } */
-
         .panel h3 {
-            font-size: 1.5rem; /* 24px */
-            font-weight: 600; /* SemiBold */
-            line-height: 1.4;
-            margin-bottom: var(--spacing-unit); /* 8px */
+            font-size: 1.3rem; /* ~21px */
+            margin-bottom: calc(var(--spacing-unit) * 3); /* 12px */
+            color: var(--color-primary);
+            font-weight: 500;
         }
 
         .panel p {
-            font-size: 1rem; /* 16px */
-            line-height: var(--base-line-height);
-            color: var(--color-text-light);
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
-         /* Footer */
-         footer {
+        /* --- Footer --- */
+        footer {
             background-color: var(--color-footer-bg);
-            color: var(--color-background);
-            text-align: center;
-            padding: calc(var(--spacing-unit) * 3) 0; /* 24px */
-            margin-top: calc(var(--spacing-unit) * 4); /* 32px */
-            font-size: 0.875rem; /* 14px */
-         }
+            color: var(--color-text-on-dark);
+            padding: calc(var(--spacing-unit) * 6) 0; /* 24px top/bottom */
+            margin-top: calc(var(--spacing-unit) * 12); /* 48px */
+        }
 
-        /* Responsive */
+        footer .container {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .container {
+                 max-width: 960px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.25rem; /* 36px */
-            }
-            .hero p {
-                font-size: 1.1rem; /* 17.6px */
-            }
-            .panels h2 {
-                font-size: 1.75rem; /* 28px */
+            html {
+                font-size: 15px;
             }
             .container {
-                 padding: 0 calc(var(--spacing-unit) * 2); /* 16px */
-            }
-        }
-         @media (max-width: 500px) {
-            html {
-                font-size: 15px; /* Slightly smaller base on mobile */
-            }
-            .hero {
-                min-height: 50vh;
-                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 2);
+                 max-width: 720px;
             }
             .hero h1 {
-                font-size: 2rem; /* 30px */
-            }
-            .panel-grid {
-                grid-template-columns: 1fr;
-                gap: calc(var(--spacing-unit) * 3); /* 24px */
-            }
-             .panels {
-                padding: calc(var(--spacing-unit) * 6) 0; /* 48px */
+                font-size: 2.5rem;
             }
              .panels h2 {
-                 margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+                 font-size: 2rem;
+             }
+            .panel {
+                flex-basis: 46%; /* Aim for 2 columns */
             }
+            nav ul {
+                 gap: calc(var(--spacing-unit) * 3); /* 12px */
+            }
+            /* Simple mobile nav toggle could be added here */
         }
 
+        @media (max-width: 576px) {
+             .hero h1 {
+                 font-size: 2.1rem;
+             }
+             .hero p {
+                 font-size: 1.05rem;
+             }
+             .panel {
+                 flex-basis: 90%; /* 1 column */
+                 min-width: 0;
+             }
+             .site-header .container {
+                 flex-direction: column;
+                 gap: calc(var(--spacing-unit) * 2);
+             }
+             .site-header {
+                 height: auto; /* Adjust height */
+                 padding: calc(var(--spacing-unit) * 2) 0;
+             }
+             body {
+                 padding-top: 90px; /* Adjust based on new header height */
+             }
+              nav ul {
+                 justify-content: center;
+                 width: 100%;
+                 padding-top: calc(var(--spacing-unit) * 2);
+             }
+         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
+    <!-- Site Header (Full Width Background) -->
+    <header class="site-header">
         <div class="container">
-            <!-- Updated Hero Content -->
+            <a href="/" class="logo">
+                <img src="./assets/database-icon.svg" alt="Database Icon">
+                Database World Tour
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="./docs/README.md">Docs</a></li>
+                    <li><a href="#explore-models">Models</a></li> <!-- Link to panels section -->
+                    <!-- Add more nav links as needed -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+
+    <!-- Hero Section (Contained Width) -->
+    <section class="hero">
+        <div class="container">
             <h1>Navigate the Database Landscape</h1>
             <p>A comprehensive exploration of modern database paradigms, designed for graduate-level understanding. Master the trade-offs and choose the right tools.</p>
             <a href="#explore-models" class="cta-button" id="ctaButton">Explore Models</a>
         </div>
-    </header>
+    </section>
 
+    <!-- Panels Section (Contained Width, but maybe full width bg) -->
     <section class="panels" id="explore-models">
         <div class="container">
             <h2>Core Database Paradigms</h2>
             <div class="panel-grid">
-                 <!-- Updated Panel Content -->
                 <div class="panel">
                     <h3>Relational (SQL)</h3>
                     <p>The bedrock of structured data. Explore ACID transactions, normalization, and powerful querying for data integrity.</p>
@@ -228,15 +320,11 @@
                     <h3>Key-Value</h3>
                     <p>Optimized for speed and scale via simple key lookups. Essential for caching, sessions, and real-time data access.</p>
                 </div>
-                 <div class="panel">
+                <div class="panel">
                     <h3>Graph</h3>
                     <p>Master complex relationships. Purpose-built for social networks, recommendations, and analyzing connections.</p>
                 </div>
-                 <div class="panel">
-                    <h3>Column-Family</h3>
-                    <p>Scale horizontally for Big Data. Efficient analytics and high write throughput for time-series and logs.</p>
-                </div>
-                 <div class="panel">
+                <div class="panel">
                     <h3>Dive Deeper</h3>
                     <p>Access the full documentation for in-depth analysis, comparisons, and advanced concepts for each model.</p>
                 </div>
@@ -244,6 +332,7 @@
         </div>
     </section>
 
+    <!-- Footer (Full Width Background) -->
     <footer>
         <div class="container">
             <p>&copy; 2025 Database World Tour. Built for Clarity.</p>
@@ -252,31 +341,36 @@
 
     <script>
         // Simple JavaScript example (no changes needed for branding)
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Database World Tour page loaded.');
-
-            const ctaButton = document.getElementById('ctaButton');
-            if(ctaButton) {
-                // Smooth scroll for the button
-                ctaButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = ctaButton.getAttribute('href'); // #explore-models
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    console.log('Explore Models button clicked!');
-                });
-            }
-
-            // Optional: Add interaction feedback if desired
-            const panels = document.querySelectorAll('.panel');
-            panels.forEach(panel => {
-                panel.addEventListener('mouseenter', () => {
-                    // console.log('Hovering over:', panel.querySelector('h3').textContent);
-                });
+        const ctaButton = document.getElementById('ctaButton');
+        if (ctaButton) {
+            ctaButton.addEventListener('click', function(event) {
+                // Example: Smooth scroll could be enhanced
+                // console.log('Explore Models button clicked!');
             });
+        }
+
+        // Active Nav Link Highlighting (Basic Example)
+        const navLinks = document.querySelectorAll('nav a');
+        const currentPath = window.location.pathname;
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath || (currentPath === '/' && link.textContent === 'Home')) {
+                link.classList.add('active');
+            } else {
+                 link.classList.remove('active'); // Ensure only one is active
+            }
         });
+
+        // Slightly more robust active handling for section links
+        const homeLink = document.querySelector('nav a[href="#"]');
+        const modelsLink = document.querySelector('nav a[href="#explore-models"]');
+        if (window.location.hash === '#explore-models' && modelsLink) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            modelsLink.classList.add('active');
+        } else if (!window.location.hash && homeLink) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            homeLink?.classList.add('active') // Use optional chaining
+        }
+
     </script>
 
 </body>

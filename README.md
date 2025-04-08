@@ -41,3 +41,4 @@ Consistency in presentation enhances clarity. Refer to the `branding` directory 
 *   [Layout](./branding/02_layout.md)
 *   [Content Strategy](./branding/03_content_strategy.md)
 *   [Brand Story](./branding/04_brand_story.md)
+*   [Sample site](https://kaw393939.github.io/database_world_tour/)
