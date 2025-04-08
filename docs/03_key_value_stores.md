@@ -55,3 +55,16 @@ Key-value stores excel where the primary access pattern is retrieving data using
 *   **Lack of Relationships**: Not designed to handle relationships between different pieces of data effectively.
 *   **Potential Consistency Trade-offs**: Often prioritize availability and performance, potentially offering eventual consistency by default (though tunable in many systems).
 *   **Not Ideal for Complex Transactions**: Handling transactions involving multiple keys can be complex or unsupported.
+
+## 8. Weaknesses
+
+*   **Limited Query Capabilities**: Complex queries, range scans, or querying by value (instead of key) are often inefficient or unsupported.
+*   **Data Modeling Constraints**: Not suitable for complex relationships or structured data requiring joins.
+*   **Potential Inconsistency**: Many offer eventual consistency, which might not be suitable for all applications.
+
+## 9. Getting Started
+
+*   **[Quick Start Tutorial (Docker)](./tutorials/03_redis_tutorial.md)**: Learn how to connect and perform basic operations with Redis using the provided Docker setup.
+
+---
+*Back to [Database World Tour README](../README.md)*

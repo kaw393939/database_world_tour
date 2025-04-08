@@ -57,3 +57,16 @@ Graph databases are ideal for data-intensive applications where relationships ar
 *   **Scalability Complexity**: While many graph databases scale horizontally, managing distributed graph traversals efficiently can be complex.
 *   **Less Mature Ecosystem (Compared to SQL)**: While growing rapidly, the ecosystem (tooling, talent pool) is generally smaller than for relational databases.
 *   **Varying Query Languages**: Less standardization across different graph database products compared to SQL.
+
+## 8. Weaknesses
+
+*   **Scalability Complexity**: While individual queries are fast, scaling graph databases for extremely large datasets or high write loads can have unique challenges compared to some other NoSQL models.
+*   **Not Ideal for Aggregate Queries**: Queries requiring aggregation over large portions of the dataset might be less performant than in analytical or relational databases.
+*   **Learning Curve**: The graph data model and query languages like Cypher require a different way of thinking compared to SQL.
+
+## 9. Getting Started
+
+*   **[Quick Start Tutorial (Docker)](./tutorials/04_neo4j_tutorial.md)**: Learn how to connect and perform basic operations with Neo4j using the provided Docker setup.
+
+---
+*Back to [Database World Tour README](../README.md)*

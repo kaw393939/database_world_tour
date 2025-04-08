@@ -59,3 +59,16 @@ Relational databases excel in scenarios requiring strong consistency, data integ
 *   **Scalability Challenges**: Scaling horizontally (across multiple servers) can be more complex than NoSQL alternatives, though modern relational databases have improved significantly.
 *   **Object-Relational Impedance Mismatch**: Translating between object-oriented programming models and relational tables can require ORM (Object-Relational Mapping) layers, adding complexity.
 *   **Performance with Highly Connected Data**: Deeply nested relationships can lead to complex and potentially slow JOIN operations compared to graph databases.
+
+## 8. Weaknesses
+
+*   **Schema Rigidity**: Changes to the schema can be complex and disruptive.
+*   **Scalability Challenges**: Scaling relational databases horizontally can be difficult and expensive compared to some NoSQL models.
+*   **Object-Relational Impedance Mismatch**: Mapping complex application objects to relational tables can be cumbersome.
+
+## 9. Getting Started
+
+*   **[Quick Start Tutorial (Docker)](./tutorials/01_postgres_tutorial.md)**: Learn how to connect and perform basic operations with PostgreSQL using the provided Docker setup.
+
+---
+*Back to [Database World Tour README](../README.md)*

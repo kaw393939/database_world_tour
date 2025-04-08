@@ -57,3 +57,16 @@ Document databases shine where data structures are complex, evolving, or don't f
 *   **Data Redundancy**: Embedding related data can lead to redundancy if the same data needs to appear in multiple documents (though normalization is still possible via referencing).
 *   **Query Complexity**: Queries involving multiple collections or complex aggregations might be more complex to express or less performant than their SQL counterparts in some cases.
 *   **Lack of Mature Standardization**: Query languages and features can vary significantly between different document databases.
+
+## 8. Weaknesses
+
+*   **Lack of ACID Transactions (Historically)**: Many document databases initially sacrificed multi-document ACID transactions for performance and scalability, though some now offer them.
+*   **Data Redundancy**: Denormalization can lead to data duplication.
+*   **Complex Queries**: Queries across different document structures or requiring joins can be less efficient or more complex than in SQL.
+
+## 9. Getting Started
+
+*   **[Quick Start Tutorial (Docker)](./tutorials/02_mongodb_tutorial.md)**: Learn how to connect and perform basic operations with MongoDB using the provided Docker setup.
+
+---
+*Back to [Database World Tour README](../README.md)*

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database World Tour: Navigate Modern Data Storage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --base-font-size: 16px;
+            --base-line-height: 1.6;
+            --spacing-unit: 0.5rem; /* 8px */
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-primary: #007bff; /* Consider defining a specific brand blue */
+            --color-primary-dark: #0056b3;
+            --color-background: #f8f9fa; /* Lighter gray */
+            --color-surface: #ffffff;
+            --color-border: #dee2e6;
+            --color-footer-bg: #343a40; /* Darker gray */
+            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            font-size: var(--base-font-size);
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            line-height: var(--base-line-height);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 0 calc(var(--spacing-unit) * 4); /* 32px */
+        }
+
+        /* Header/Hero Section */
+        .hero {
+            /* Using a subtle gradient instead of placeholder image */
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.8), rgba(52, 58, 64, 0.8));
+            color: var(--color-surface);
+            min-height: 55vh; /* Adjusted height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 700; /* Bold */
+            line-height: 1.2;
+            margin-bottom: calc(var(--spacing-unit) * 2); /* 16px */
+        }
+
+        .hero p {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 400; /* Regular */
+            line-height: 1.5;
+            max-width: 700px; /* Constrain intro text width */
+            margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+        }
+
+        .hero .cta-button {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3); /* 12px 24px */
+            background-color: var(--color-primary);
+            color: var(--color-surface);
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.1rem; /* 17.6px */
+            font-weight: 600; /* SemiBold */
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .cta-button:hover {
+            background-color: var(--color-primary-dark);
+            cursor: pointer;
+        }
+
+        /* Panels Section */
+        .panels {
+            padding: calc(var(--spacing-unit) * 8) 0; /* 64px */
+            background-color: var(--color-surface);
+        }
+
+        .panels h2 {
+            text-align: center;
+            font-size: 2rem; /* 32px */
+            font-weight: 700; /* Bold */
+            line-height: 1.3;
+            margin-bottom: calc(var(--spacing-unit) * 6); /* 48px */
+            color: #495057; /* Darker gray for heading */
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: calc(var(--spacing-unit) * 4); /* 32px */
+        }
+
+        .panel {
+            background: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 4); /* 32px */
+            border-radius: 6px;
+            border: 1px solid var(--color-border);
+            /* Subtle shadow */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Placeholder for icons - style if added */
+        /* .panel i { ... } */
+
+        .panel h3 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600; /* SemiBold */
+            line-height: 1.4;
+            margin-bottom: var(--spacing-unit); /* 8px */
+        }
+
+        .panel p {
+            font-size: 1rem; /* 16px */
+            line-height: var(--base-line-height);
+            color: var(--color-text-light);
+        }
+
+         /* Footer */
+         footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-background);
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 3) 0; /* 24px */
+            margin-top: calc(var(--spacing-unit) * 4); /* 32px */
+            font-size: 0.875rem; /* 14px */
+         }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem; /* 36px */
+            }
+            .hero p {
+                font-size: 1.1rem; /* 17.6px */
+            }
+            .panels h2 {
+                font-size: 1.75rem; /* 28px */
+            }
+            .container {
+                 padding: 0 calc(var(--spacing-unit) * 2); /* 16px */
+            }
+        }
+         @media (max-width: 500px) {
+            html {
+                font-size: 15px; /* Slightly smaller base on mobile */
+            }
+            .hero {
+                min-height: 50vh;
+                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 2);
+            }
+            .hero h1 {
+                font-size: 2rem; /* 30px */
+            }
+            .panel-grid {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 3); /* 24px */
+            }
+             .panels {
+                padding: calc(var(--spacing-unit) * 6) 0; /* 48px */
+            }
+             .panels h2 {
+                 margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <!-- Updated Hero Content -->
+            <h1>Navigate the Database Landscape</h1>
+            <p>A comprehensive exploration of modern database paradigms, designed for graduate-level understanding. Master the trade-offs and choose the right tools.</p>
+            <a href="#explore-models" class="cta-button" id="ctaButton">Explore Models</a>
+        </div>
+    </header>
+
+    <section class="panels" id="explore-models">
+        <div class="container">
+            <h2>Core Database Paradigms</h2>
+            <div class="panel-grid">
+                 <!-- Updated Panel Content -->
+                <div class="panel">
+                    <h3>Relational (SQL)</h3>
+                    <p>The bedrock of structured data. Explore ACID transactions, normalization, and powerful querying for data integrity.</p>
+                </div>
+                <div class="panel">
+                    <h3>Document</h3>
+                    <p>Embrace schema flexibility. Ideal for evolving data structures, content management, and user-centric applications.</p>
+                </div>
+                <div class="panel">
+                    <h3>Key-Value</h3>
+                    <p>Optimized for speed and scale via simple key lookups. Essential for caching, sessions, and real-time data access.</p>
+                </div>
+                 <div class="panel">
+                    <h3>Graph</h3>
+                    <p>Master complex relationships. Purpose-built for social networks, recommendations, and analyzing connections.</p>
+                </div>
+                 <div class="panel">
+                    <h3>Column-Family</h3>
+                    <p>Scale horizontally for Big Data. Efficient analytics and high write throughput for time-series and logs.</p>
+                </div>
+                 <div class="panel">
+                    <h3>Dive Deeper</h3>
+                    <p>Access the full documentation for in-depth analysis, comparisons, and advanced concepts for each model.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Database World Tour. Built for Clarity.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript example (no changes needed for branding)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Database World Tour page loaded.');
+
+            const ctaButton = document.getElementById('ctaButton');
+            if(ctaButton) {
+                // Smooth scroll for the button
+                ctaButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = ctaButton.getAttribute('href'); // #explore-models
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    console.log('Explore Models button clicked!');
+                });
+            }
+
+            // Optional: Add interaction feedback if desired
+            const panels = document.querySelectorAll('.panel');
+            panels.forEach(panel => {
+                panel.addEventListener('mouseenter', () => {
+                    // console.log('Hovering over:', panel.querySelector('h3').textContent);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

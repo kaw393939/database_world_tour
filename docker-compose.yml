@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: examplepassword # Change this password
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: examplepassword # Change this password
+      POSTGRES_DB: tourdb
+
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j_db
+    ports:
+      - "7474:7474" # HTTP
+      - "7687:7687" # Bolt
+    volumes:
+      - neo4j_data:/data
+    environment:
+      # NEO4J_AUTH=neo4j/password format
+      NEO4J_AUTH: neo4j/examplepassword # Change this password
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes" # Required for newer versions if using Enterprise features implicitly/explicitly
+
+  redis:
+    image: redis:latest
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    # If you need persistence uncomment the following line:
+    # command: redis-server --save 60 1 --loglevel warning
+
+volumes:
+  mongo_data:
+  postgres_data:
+  neo4j_data:
+  redis_data:
+
